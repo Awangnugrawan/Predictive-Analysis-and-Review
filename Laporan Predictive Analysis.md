@@ -35,7 +35,8 @@ Menjelaskan tujuan dari pernyataan masalah:
 
 
 ## Data Understanding
-Dataset yang digunakan pada laporan ini adalah data tarif penerbangan di negara India pada tahun 2019 .Tujuan atau target dari dataset ini adalah menganalisis data  dan membangun model prediksi yang dapat memprediksi harga tiket pesawat berdasarkan fitur-fitur tersebut. [Kaggle Repository] (https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh/code)
+Dataset yang digunakan pada laporan ini adalah data tarif penerbangan di negara India pada tahun 2019 .Tujuan atau target dari dataset ini adalah menganalisis data  dan membangun model prediksi yang dapat memprediksi harga tiket pesawat berdasarkan fitur-fitur tersebut. 
+[Kaggle Repository](https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh/code)
 
 ### Variabel-variabel pada flight fare prediction Kaggle Dataset adalah sebagai berikut:
 1. Airline: kolom ini akan berisi semua jenis maskapai penerbangan seperti Indigo, Jet Airways, Air India, dan masih banyak lagi. 
@@ -204,15 +205,26 @@ Pada tahap evaluasi digunakan tiga metrik evaluasi yang digunakan yaitu:
 
 R2 Score adalah metrik yang digunakan untuk mengukur seberapa baik model regresi memprediksi target. 
 Formula R2 Score adalah:
-R2= {1-(SSres\SStot)}
-R2 = 1 - (SSres / SStot)
+
+$$ R2 = {1 - {SSres \over SStot}} $$
+
+Ket:
+- SSres adalah sum of squared residuals, yaitu jumlah kuadrat selisih antara nilai target aktual dan nilai target prediksi.
+- SStot adalah total sum of squares, yaitu jumlah kuadrat selisih antara nilai target aktual dan nilai rata-rata target.
+
+Metrik ini mengukur seberapa baik model regresi menjelaskan variasi dari target (tarif pesawat). Nilai R2_Score berkisar antara 0 dan 1, dimana nilai 1 menunjukkan model regresi yang sempurna dan nilai 0 menunjukkan model regresi yang buruk. Dalam hal prediksi tarif pesawat, nilai R2_Score yang tinggi menunjukkan bahwa model regresi memiliki kemampuan yang baik dalam memprediksi tarif pesawat.
 
 Dengan menggunakan metrik R2_Score tersebut di dapatkan hasil dari 3 modelling :
+
 | Model	|  train 	|  test 	|
 |---	|---		|---		|
 |KNN   	|0.798497   	|0.624805   	|
 |RF   	|0.941121   	|0.825389   	|
 |DTR   	|0.972591   	|0.737278   	|
+
+Tabel 3. Metrik R2_Score
+
+Pada tabel 3 dapat diketahui bahwa model dengan r2_score tertinggi untuk data _training_ dan data _test_ adalah model _Random Forest Regressor_ Sedangkan model dengan r2_score terendah untuk data _training_ dan data _test_ adalah _KNN_  
 
 
 
