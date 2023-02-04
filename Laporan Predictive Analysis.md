@@ -96,29 +96,16 @@ Tabel 2. Jumlah nilai null tiap kolom
 Pada Tabel 2 kolom "Route" dam kolom "Total_Stops" masing-masing memiliki 1 nilai null
 
 
-![Gambar Diagram Batang airplane](https://raw.githubusercontent.com/Awangnugrawan/Predictive-Analysis-and-Review/main/diagram_batang.png)
+![Gambar Diagram Batang airplane](https://github.com/Awangnugrawan/Predictive-Analysis-and-Review/blob/main/bar_diagram.jpg)
+Gambar 1. Distribusi Airplane
 
 
-
-Dari hasil visualisasi dengan menggunakan diagram batang pada atribut “Airline” dapat dilihat bahwa jenis maskapai penerbangan  yang paling banyak adalah Jet airways disusul dengan IndiGo kemudian AirIndia sedangkan maskapai penerbangan Visitera premium economy adalah maskapai yang paling sedikit.
+Pada gambar 1 dari hasil visualisasi dengan menggunakan diagram batang pada atribut “Airline” dapat dilihat bahwa jenis maskapai penerbangan  yang paling banyak adalah Jet airways disusul dengan IndiGo kemudian AirIndia sedangkan maskapai penerbangan Visitera premium economy adalah maskapai yang paling sedikit.
 
 
 
 ## Data Preparation
-Teknik yang digunakan pada notebook secara berurutan.
--	Missing value
--	Handling "Date_of_Journey"
--	Handling "Dep_Time"
--	Handling "Arrival_Time"
--	Handling "Duration"
--	Handling "Total_stops"
--	Handling "Airplane"
--	Handling "Source"
--	Handling "Destination"
--	Concenate dataframe Airline,Source, dan Destination
-
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
+Teknik yang digunakan pada notebook secara berurutan : 
 -	Missing value
  Teknik yang pertama dilakukan adalah dengan mengecek nilai null pada dataset setelah menggunakan code “ df.isnull().sum()” di dapatkan bahwa terdapat 2 nilai null pada masing masing kolom route dan top_stops. Setelah itu dilakukan drop atribut yang tidak di perlukan seperti "Route" karena valuenya mirip dengan kolom Total Stops dan "Additional info" karena sebagian besar valuenya adalah no info.
 
@@ -161,51 +148,73 @@ Pada dataset ini menggunakan 3 modelling yaitu :
  
 Kelebihan dan kekurangan tiap Algoritma:
 1. KNeighborsRegressor 
+
 Kelebihan:
 -	Mudah diimplementasikan: KNeighborsRegressor sangat mudah diimplementasikan dan bisa digunakan hanya dengan beberapa baris kode.
 -	Menangani data yang hilang: KNeighborsRegressor bisa menangani data yang hilang tanpa memerlukan imputasi apa pun.
 -	Berfungsi dengan baik pada dataset kecil: KNeighborsRegressor berfungsi dengan baik pada dataset kecil dan merupakan pilihan yang baik saat data yang tersedia terbatas.
+
 Kekurangan:
 -	Sensitif terhadap fitur yang tidak relevan: KNeighborsRegressor sensitif terhadap fitur yang tidak relevan dan bisa terpengaruh oleh adanya fitur bising atau berlebihan dalam data.
 -	Mahal secara komputasional: KNeighborsRegressor bisa mahal secara komputasional saat jumlah titik data besar, karena algoritma harus menghitung jarak antara semua titik data.
 -	Kinerja tergantung pada pilihan k: Kinerja KNeighborsRegressor tergantung pada pilihan k, jumlah tetangga terdekat untuk dipertimbangkan, yang bisa sulit ditentukan.
 
-Pada dataset nilai K terbaik setelah pengujian beberapa nilai K didapatkan nilai K terbaik adalah 3 .Namun algoritma ini bukan hasil yang terbaik pada ketiga modelling. Selain itu , ini juga merupakan kekurangan karena nilai K yang sulit ditemukan
+Kode `knn = KNeighborsRegressor(n_neighbors=3)` ini digunakan untuk membuat objek model K-Nearest Neighbor Regression (KNN). Pada baris ini, parameter `n_neighbors=3` digunakan untuk menentukan jumlah tetangga terdekat (K) yang akan digunakan dalam memprediksi tarif penerbangan. Artinya, dalam hal ini, 3 tetangga terdekat dalam data historis akan digunakan untuk memprediksi tarif penerbangan.
+
+Kode `knn.fit(X_train, y_train)` digunakan untuk melatih model KNN dengan data latih (X_train, y_train). X_train adalah data fitur yang digunakan untuk memprediksi tarif penerbangan, sedangkan y_train adalah data target (tarif penerbangan) yang akan diprediksi oleh model. Setelah melatih model, model KNN akan mempelajari hubungan antara fitur-fitur dan tarif penerbangan dan siap untuk memprediksi tarif penerbangan baru.
 
 2. Random Forest Regressor
+
 Kelebihan:
 -	Bisa menangani hubungan non-linier: Random Forest Regressor bisa menangani hubungan non-linier antara fitur dan variabel target, membuatnya pilihan yang baik untuk dataset yang kompleks.
 -	Tahan terhadap outliers: Random Forest Regressor tahan terhadap outliers dan tidak membuat asumsi yang kuat tentang distribusi data.
 -	Mengurangi overfitting: Dengan mengambil rata-rata prediksi dari banyak pohon keputusan, Random Forest Regressor mengurangi overfitting, yang merupakan masalah umum pada algoritma pohon keputusan.
+
+
 Kekurangan:
 -	Mahal secara komputasional: Random Forest Regressor bisa mahal secara komputasional, terutama saat jumlah pohon besar atau saat jumlah fitur tinggi.
 -	Rawan overfitting: Meskipun Random Forest Regressor kurang rawan overfitting dibandingkan pohon keputusan, ia masih bisa overfitting jika jumlah pohon terlalu besar atau jika kedalaman pohon terlalu dalam.
 -	Sulit diterjemahkan: Berbeda dengan model regresi linier sederhana, prediksi Random Forest Regressor sulit diterjemahkan, karena berdasarkan pada kombinasi dari banyak pohon keputusan.
 
-Pada modelling menggunakan n_estimators=50, max_depth=16, random_state=55, n_jobs=-1 dengan parameter tersebut memberikan hasil algoritma paling baik diantara algoritma lainnya
+Kode `RF = RandomForestRegressor(n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)` ini digunakan untuk membuat objek model Random Forest Regression. Pada baris ini, parameter `n_estimators=50` digunakan untuk menentukan jumlah pohon yang akan dibangun dalam model Random Forest. Parameter `max_depth=16` digunakan untuk menentukan kedalaman maksimal pohon dalam model. Parameter `random_state=55` digunakan untuk memastikan hasil reproduksi model Random Forest. Dan `Parameter n_jobs=-1` digunakan untuk menentukan jumlah kerja paralel yang akan digunakan dalam melatih model.
+
+Kode `RF.fit(X_train, y_train)` digunakan untuk melatih model Random Forest Regression dengan data latih (X_train, y_train). X_train adalah data fitur yang digunakan untuk memprediksi tarif penerbangan, sedangkan y_train adalah data target (tarif penerbangan) yang akan diprediksi oleh model. Setelah melatih model, model Random Forest akan mempelajari hubungan antara fitur-fitur dan tarif penerbangan dan siap untuk memprediksi tarif penerbangan baru.
 
 3. Decision Tree Regressor
+
 Kelebihan 
 -	Mudah dipahami dan diimplementasikan: Decision Tree Regressor memiliki representasi visual yang mudah dipahami, sehingga memudahkan interpretasi hasil dan membuat model ini mudah dipahami oleh stakeholder.
 -	Dapat menangani fitur numerik dan kategorikal: Decision Tree Regressor dapat menangani fitur numerik dan kategorikal dengan baik, sehingga dapat digunakan untuk berbagai jenis data.
 -	Dapat menangani outliers dan non-linearitas: Decision Tree Regressor memiliki kemampuan membagi data secara berulang-ulang sehingga dapat menangani outlier dan non-linearitas dalam data.
+
+
 Kekurangan :
 -	Mudah overfitting: Decision Tree Regressor memiliki kecenderungan untuk overfitting jika depth-nya terlalu dalam. Ini dapat diatasi dengan teknik seperti pemotongan pohon, tetapi membutuhkan pemahaman yang baik dari model dan dataset.
 -	Instabilitas: Decision Tree Regressor sangat sensitif terhadap perubahan kecil pada data, sehingga model yang dibangun dengan dataset yang berbeda mungkin sangat berbeda.
 -	Bias terhadap fitur yang memiliki banyak data: Decision Tree Regressor cenderung memprioritaskan fitur yang memiliki banyak data dalam membuat pembagian data.
 
-Pada modelling ini menggunakan parameter max_depth=20 , namun setelah di evaluasi terjadi overfitting sesuai dengan kekurangan yang dijelaskan di atas. Sehingga Algoritma ini tidak lebih baik daripada Random Forest Regressor tapi sedikit lebih baik dari Algoritma KNeighborsRegressor
+Kode `DTR= DecisionTreeRegressor(max_depth=20, random_state=3)` ini digunakan untuk membuat objek model Decision Tree Regression. Pada baris ini, parameter `max_depth=20` digunakan untuk menentukan kedalaman maksimal pohon dalam model.Dan parameter `random_state=3` digunakan untuk memastikan hasil reproduksi model Decision Tree.
 
+Kode `DTR.fit(X_train, y_train)` digunakan untuk melatih model Decision Tree Regression dengan data latih (X_train, y_train). X_train adalah data fitur yang digunakan untuk memprediksi tarif penerbangan, sedangkan y_train adalah data target (tarif penerbangan) yang akan diprediksi oleh model. Setelah melatih model, model Decision Tree akan mempelajari hubungan antara fitur-fitur dan tarif penerbangan dan siap untuk memprediksi tarif penerbangan baru.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 Pada tahap evaluasi digunakan tiga metrik evaluasi yang digunakan yaitu:
-1.	R2_Score
+
+1.R2_Score
+
+R2 Score adalah metrik yang digunakan untuk mengukur seberapa baik model regresi memprediksi target. 
+Formula R2 Score adalah:
+R2= {1-(SSres\SStot)}
+R2 = 1 - (SSres / SStot)
+
 Dengan menggunakan metrik R2_Score tersebut di dapatkan hasil dari 3 modelling :
-                train	                   test
-KNN	0.798497	0.624805
-RF	0.941121	0.825389
-DTR	0.972591	0.737278
+| Model	|  train 	|  test 	|
+|---	|---		|---		|
+|KNN   	|0.798497   	|0.624805   	|
+|RF   	|0.941121   	|0.825389   	|
+|DTR   	|0.972591   	|0.737278   	|
+
+
 
 2.	Mean Square Error
 Dengan menggunakan metrik Mean Square Error tersebut di dapatkan hasil dari 3 modelling:
