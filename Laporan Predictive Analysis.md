@@ -1,5 +1,6 @@
 # Laporan Proyek Machine Learning – Awang Mulya Nugrawan
 
+
 ## Domain Proyek
 Masalah latar belakang dari prediksi tarif pesawat adalah bagaimana memprediksi harga tiket pesawat yang akan dibeli oleh penumpang. Hal ini menjadi masalah karena harga tiket pesawat sangat bervariasi dan dipengaruhi oleh berbagai faktor seperti jenis penerbangan, waktu penerbangan, jarak, musim, dan banyak lagi. Oleh karena itu, sangat penting bagi perusahaan penerbangan untuk memprediksi harga tiket secara akurat agar dapat membuat keputusan strategis dan memaksimalkan keuntungan. Prediksi yang akurat juga membantu dalam memenuhi kebutuhan dan ekspektasi pelanggan dengan menawarkan harga yang wajar dan kompetitif.
 
@@ -201,7 +202,7 @@ Kode `DTR.fit(X_train, y_train)` digunakan untuk melatih model Decision Tree Reg
 ## Evaluation
 Pada tahap evaluasi digunakan tiga metrik evaluasi yang digunakan yaitu:
 
-1.R2_Score
+1. R2_Score
 
 R2 Score adalah metrik yang digunakan untuk mengukur seberapa baik model regresi memprediksi target. 
 Formula R2 Score adalah:
@@ -226,56 +227,81 @@ Tabel 3. Metrik R2_Score
 
 Pada tabel 3 dapat diketahui bahwa model dengan r2_score tertinggi untuk data _training_ dan data _test_ adalah model _Random Forest Regressor_ Sedangkan model dengan r2_score terendah untuk data _training_ dan data _test_ adalah _KNN_  
 
+![plot r2_score](https://raw.githubusercontent.com/Awangnugrawan/Predictive-Analysis-and-Review/main/plot_R2_SCORE.jpg)
 
+Gambar 2. Plot R2 Score
 
-2.	Mean Square Error
-Dengan menggunakan metrik Mean Square Error tersebut di dapatkan hasil dari 3 modelling:
-	    train	                    test
-KNN	4186.297999	8712.025152
-RF	1223.235661	4054.469
-DTR	569.42498	6100.403468
+Pada gambar 2 dapat dilihat bahwa urutan model dari yang terbaik ke terburuk adalah RF , DTR , dan KNN
 
-3.	Mean Absolute Error
-Dengan menggunakan metrik Mean Absolute Error
-tersebut di dapatkan hasil dari 3 modelling :
-	train	                  test
-KNN	1.24639	1.799676
-RF	0.690195	1.236153
-DTR	0.296922	1.440906
-
-Dari hasil Evaluasi tersebut disimpulkan bahwa model Random Forest Regressor adalah yang terbaik diantara yang lain
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-1. R2_Score
-R2 Score adalah metrik yang digunakan untuk mengukur seberapa baik model regresi memprediksi target. Formula R2 Score adalah:
-R2 = 1 - (SSres / SStot)
-Ket:
-SSres adalah sum of squared residuals, yaitu jumlah kuadrat selisih antara nilai target aktual dan nilai target prediksi.
-SStot adalah total sum of squares, yaitu jumlah kuadrat selisih antara nilai target aktual dan nilai rata-rata target.
-Metrik ini mengukur seberapa baik model regresi menjelaskan variasi dari target (tarif pesawat). Nilai R2_Score berkisar antara 0 dan 1, dimana nilai 1 menunjukkan model regresi yang sempurna dan nilai 0 menunjukkan model regresi yang buruk. Dalam hal prediksi tarif pesawat, nilai R2_Score yang tinggi menunjukkan bahwa model regresi memiliki kemampuan yang baik dalam memprediksi tarif pesawat.
 
 2. Mean Square Error
-Mean Squared Error (MSE) adalah metrik yang digunakan untuk mengukur kualitas model regresi. Formula MSE adalah:
-MSE = (1 / n) * Σ (yi - ŷi)^2
+
+Mean Squared Error (MSE) adalah metrik yang digunakan untuk mengukur kualitas model regresi. 
+Formula MSE adalah:
+
+$$ MSE = {Σ * (yi - ŷi)^2 \over n} $$
+
 ket:
-n adalah jumlah data
-yi adalah nilai target aktual
-ŷi adalah nilai target prediksi
-Σ (yi - ŷi)^2 adalah jumlah kuadrat selisih antara nilai target aktual dan nilai target prediksi
+- n adalah jumlah data
+- yi adalah nilai target aktual
+- ŷi adalah nilai target prediksi
+- Σ (yi - ŷi)^2 adalah jumlah kuadrat selisih antara nilai target aktual dan nilai target prediksi
 
 Metrik ini mengukur rata-rata kuadrat selisih antara nilai target aktual (tarif pesawat) dan nilai target prediksi. Semakin kecil nilai MSE, semakin baik model regresi dalam memprediksi tarif pesawat. Dalam hal prediksi tarif pesawat, model regresi dengan MSE yang lebih kecil akan dianggap memiliki performa yang lebih baik dibandingkan dengan model yang memiliki MSE yang lebih besar.
 
-3.Mean Absolute Error
-Mean Absolute Error (MAE) adalah metrik yang digunakan untuk mengukur kualitas model regresi. Formula MAE adalah:
+Dengan menggunakan metrik Mean Square Error tersebut di dapatkan hasil dari 3 modelling:
 
-MAE = (1 / n) * Σ |yi - ŷi|
+| Model	|  train 	|  test 	|
+|---	|---		|---		|
+|KNN   	|4186.297999   	|8712.025152   	|
+|RF   	|1223.235661   	|4054.469   	|
+|DTR   	|569.42498   	|6100.403468   	|
+
+Tabel 4 Metrik Mean Square Error
+
+Pada tabel tersebut model yang memiliki _error_ yang tinggi adalah _KNN_ dan model yang memiliki _error_ terendah adalah _RF_
+
+![plot MSE](https://raw.githubusercontent.com/Awangnugrawan/Predictive-Analysis-and-Review/main/PLOT%20MSE.jpg)
+
+Gambar 3. PLOT MSE
+
+Berdasarkan hasil plot pada gambar 3 urutan model yang memiliki error sedikit ke terbanyak adalah _RF_ , _DTR_ , dan _KNN_
+
+
+3. Mean Absolute Error
+
+Mean Absolute Error (MAE) adalah metrik yang digunakan untuk mengukur kualitas model regresi. 
+Formula MAE adalah:
+
+$$ MAE = {Σ * |yi - ŷi| \over n} $$
+
 ket:
-n adalah jumlah data
-yi adalah nilai target aktual
-ŷi adalah nilai target prediksi
-Σ |yi - ŷi| adalah jumlah absolute selisih antara nilai target aktual dan nilai target prediksi
+- n adalah jumlah data
+- yi adalah nilai target aktual
+- ŷi adalah nilai target prediksi
+- Σ |yi - ŷi| adalah jumlah absolute selisih antara nilai target aktual dan nilai target prediksi
 
 Metrik ini mengukur rata-rata selisih antara nilai target aktual (tarif pesawat) dan nilai target prediksi. Semakin kecil nilai MAE, semakin baik model regresi dalam memprediksi tarif pesawat. Dalam hal prediksi tarif pesawat, model regresi dengan MAE yang lebih kecil akan dianggap memiliki performa yang lebih baik dibandingkan dengan model yang memiliki MAE yang lebih besar.
+
+Dengan menggunakan metrik Mean Absolute Error tersebut di dapatkan hasil dari 3 modelling :
+
+| Model	|  train 	|  test 	|
+|---	|---		|---		|
+|KNN   	|1.24639   	|1.799676   	|
+|RF   	|0.690195   	|1.236153   	|
+|DTR   	|0.296922   	|1.440906   	|
+
+Tabel 5. Metrik Mean Absolute Error
+
+Pada tabel 5 sama seperti MSE model yang memiliki _error_ yang tinggi adalah _KNN_ dan model yang memiliki _error_ terendah adalah _RF_
+
+![plot MAE](https://raw.githubusercontent.com/Awangnugrawan/Predictive-Analysis-and-Review/main/Plot%20MAE.jpg)
+
+Gambar 4. PLOT MAE
+
+Berdasarkan gambar 4 dan dari ketiga plot metrik dapat disimpulkan bahwa model _Random Forest Regression_ adalah model yang terbaik
+
+
 
 Referensi:
 Wang, T., Pouyanfar, S., Tian, H., Tao, Y., Alonso, M., Luis, S., & Chen, S. C. (2019, July). A framework for airfare price prediction: a machine learning approach. In 2019 IEEE 20th international conference on information reuse and integration for data science (IRI) (pp. 200-207). IEEE.
