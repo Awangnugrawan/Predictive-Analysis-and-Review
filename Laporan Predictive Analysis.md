@@ -5,13 +5,13 @@
 Masalah latar belakang dari prediksi tarif pesawat adalah bagaimana memprediksi harga tiket pesawat yang akan dibeli oleh penumpang. Hal ini menjadi masalah karena harga tiket pesawat sangat bervariasi dan dipengaruhi oleh berbagai faktor seperti jenis penerbangan, waktu penerbangan, jarak, musim, dan banyak lagi. Oleh karena itu, sangat penting bagi perusahaan penerbangan untuk memprediksi harga tiket secara akurat agar dapat membuat keputusan strategis dan memaksimalkan keuntungan. Prediksi yang akurat juga membantu dalam memenuhi kebutuhan dan ekspektasi pelanggan dengan menawarkan harga yang wajar dan kompetitif.
 
 
-Sebagian besar penelitian tentang prediksi harga tiket pesawat berfokus pada tingkat nasional atau pasar tertentu. Penelitian pada tingkat segmen pasar, bagaimanapun, masih sangat terbatas.penelitian yang ada pada segmen pasar.Prediksi harga segmen pasar menggunakan model statistik konvensional berbasis heuristik  konvensional, seperti regresi linier dan didasarkan pada asumsi bahwa ada hubungan linier antara variabel dependen dan independen, yang dalam banyak yang dalam banyak kasus, mungkin tidak benar. Kemajuan terbaru dalam Kecerdasan Buatan (AI) dan Pembelajaran Mesin (ML) memungkinkan untuk menyimpulkan aturan dan variasi model pada harga tiket pesawat berdasarkan sejumlah besar fitur, sering kali mengungkap hubungan tersembunyi di antara fitur-fitur tersebut secara otomatis.
+Sebagian besar penelitian tentang prediksi harga tiket pesawat berfokus pada tingkat nasional atau pasar tertentu. Penelitian pada tingkat segmen pasar, bagaimanapun, masih sangat terbatas.penelitian yang ada pada segmen pasar.Prediksi harga segmen pasar menggunakan model statistik konvensional berbasis heuristik  konvensional, seperti regresi linier dan didasarkan pada asumsi bahwa ada hubungan linier antara variabel dependen dan independen, yang dalam banyak yang dalam banyak kasus, mungkin tidak benar. Kemajuan terbaru dalam _Artificial Intelligence (AI)_ dan _Machine Learning (ML)_ memungkinkan untuk menyimpulkan aturan dan variasi model pada harga tiket pesawat berdasarkan sejumlah besar fitur, sering kali mengungkap hubungan tersembunyi di antara fitur-fitur tersebut secara otomatis.
 
 
 ## Business Understanding
 
 ### Problem Statements
-Bagaimana caraa memprediksi dan memvalidasi model prediksi tarif penerbangan dengan data yang tersedia?
+Bagaimana cara memprediksi dan memvalidasi model prediksi tarif penerbangan dengan data yang tersedia?
 
 Menjelaskan pernyataan masalah latar belakang:
 - Tarif penerbangan seringkali bervariasi dan sulit diprediksi, sehingga sulit bagi pelanggan untuk memperkirakan biaya perjalanan mereka.
@@ -27,6 +27,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 
  ### Solution statements
  Solusi pada prediksi tarif penerbangan akan menggunakan 3 algoritma yaitu:
+ 
 - K-Nearest Neighbor Regression (KNN): KNN adalah salah satu algoritma regresi yang bergantung pada jarak antara data baru dan data historis. Dalam konteks prediksi tarif penerbangan, KNN akan mencari K penerbangan terdekat dalam data historis yang memiliki karakteristik yang sama dengan penerbangan yang akan diprediksi, dan memprediksi tarif penerbangan berdasarkan rata-rata tarif dari K penerbangan terdekat. KNN membutuhkan data historis yang banyak dan memperhitungkan semua faktor yang mempengaruhi tarif penerbangan.
 
 - Random Forest Regression: Random Forest adalah algoritma regresi yang menggunakan metode ensambling dari banyak pohon pemutus (decision tree). Dalam konteks prediksi tarif penerbangan, Random Forest akan membuat beberapa pohon pemutus yang memprediksi tarif penerbangan berdasarkan faktor-faktor seperti jarak penerbangan, Durasi, hari, bulan dan jenis maskapai penerbangan. Setiap pohon pemutus akan memberikan prediksi yang berbeda dan Random Forest akan mengambil rata-rata dari semua prediksi pohon pemutus untuk membuat prediksi tarif penerbangan yang akhir. Random Forest memiliki kelebihan dalam menangani faktor-faktor yang kompleks dan memperhitungkan interaksi antar faktor.
@@ -58,19 +59,19 @@ Dataset yang digunakan pada laporan ini adalah data tarif penerbangan di negara 
 - Jumlah kolom : 11
 - Info dataset:
 
-|   NO	| Column         |Non-Null Count 	|Dtype		|
-|---	|---	         |---			|---		|
-|   1 	|Airline  	 |10683 non-null   	|object   	|
+|   NO	| Column         |Non-Null Count 	  |Dtype		   |
+|---	|---	              |---			            |---     		|
+|   1 	|Airline       	 |10683 non-null   	|object   	|
 |   2 	|Date_of_Journey |10683 non-null   	|object   	|
-|   3	|Source     	 |10683 non-null   	|object   	|
-|   4	|Destination	 |10683 non-null   	|object   	|
-|   5	|Route    	 |10682 non-null   	|object   	|
-|   6	|Dep_Time  	 |10683 non-null   	|object   	|
-|   7	|Arrival_Time 	 |10683 non-null   	|object   	|
-|   8	|Duration   	 |10683 non-null   	|object   	|
-|   9	|Total_Stops   	 |10682 non-null   	|object   	|
+|   3	|Source     	     |10683 non-null   	|object   	|
+|   4	|Destination	     |10683 non-null   	|object   	|
+|   5	|Route    	       |10682 non-null   	|object   	|
+|   6	|Dep_Time  	      |10683 non-null   	|object   	|
+|   7	|Arrival_Time 	   |10683 non-null   	|object   	|
+|   8	|Duration   	     |10683 non-null   	|object   	|
+|   9	|Total_Stops   	  |10682 non-null   	|object   	|
 |   10	| Additional_Info|10683 non-null   	|object   	|
-|   11	|Price    	 |10683 non-null   	|int64   	|
+|   11	|Price    	      |10683 non-null   	|int64   	 |
 
 
 Tabel 1. Info detail tiap kolom 
@@ -79,19 +80,19 @@ Pada tabel 1 terdiri atas 11 kolom dan sebagian besar tipe datanya adalah _objec
 -	Nilai null = 
 
 
-| Kolom         |jumlah nilai null	|
-|---	         |---			|
-|Airline  	 |0		  	|
+| Kolom          |jumlah nilai null	|
+|---	            |---		 	|
+|Airline  	      |0		  	 |
 |Date_of_Journey |0   			|
-|Source     	 |0   			|
-|Destination	 |0   			|
-|Route    	 |1   			|
-|Dep_Time  	 |0   			|
-|Arrival_Time 	 |0   			|
-|Duration   	 |0   			|
+|Source     	    |0   			|
+|Destination	    |0   			|
+|Route    	      |1   			|
+|Dep_Time  	     |0   			|
+|Arrival_Time 	  |0   			|
+|Duration   	    |0   			|
 |Total_Stops   	 |1   			|
 | Additional_Info|0   			|
-|Price    	 |0   			|
+|Price    	      |0   			|
 
 Tabel 2. Jumlah nilai null tiap kolom
 
@@ -142,13 +143,6 @@ Penyatuan 3 atribut catagorik yang telah dilakukan teknik One hot encoding pada 
 
 ## Modeling
 Pada dataset ini menggunakan 3 modelling yaitu :
-1.	KNeighborsRegressor menggunakan k = 3 tetangga dan metric Euclidean untuk mengukur jarak antara titik
-2.	RandomForestRegressor menggunakan n_estimators=50, max_depth=16, random_state=55, n_jobs=-1
-3.	DecisionTreeRegressor menggunakan max_depth=20, random_state=3
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
- 
-Kelebihan dan kekurangan tiap Algoritma:
 1. KNeighborsRegressor 
 
 Kelebihan:
