@@ -96,7 +96,7 @@ Tabel 2. Jumlah nilai null tiap kolom
 Pada Tabel 2 kolom "Route" dam kolom "Total_Stops" masing-masing memiliki 1 nilai null
 
 
-![Gambar Diagram Batang airplane]()
+![Gambar Diagram Batang airplane](https://raw.githubusercontent.com/Awangnugrawan/Predictive-Analysis-and-Review/main/diagram_batang.png)
 
 
 
